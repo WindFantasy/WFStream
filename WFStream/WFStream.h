@@ -3,7 +3,6 @@
 //  WFStream
 //
 //  Created by Jerry on 2020/4/23.
-//  Copyright © 2020 Jerry. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -16,4 +15,4 @@ FOUNDATION_EXPORT const unsigned char WFStreamVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <WFStream/PublicHeader.h>
 
-
+#import <WFStream/wf_stream.h>
