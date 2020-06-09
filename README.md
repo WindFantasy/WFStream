@@ -41,7 +41,7 @@ NSArray<Employee *> *hrOffiers = ...;
 NSArray<Employee *> *finantialOffiers = ...;
 NSArray<Employee *> *developers = ...;
 
-NSArray<NSArray *> *employeeIds = finantialOffiers.stream
+NSArray<NSString *> *employeeIds = finantialOffiers.stream
 .filter(^BOOL(Employee *e) {
     return !e.isHrOfficier;
 })
@@ -55,14 +55,14 @@ NSArray<NSArray *> *employeeIds = finantialOffiers.stream
 
 WFStream has two sets of operations: 
 
-- Intermediate Operation
+### Intermediate Operation
 
 Performs action on each elements of a stream. Itermediate operations are 'lazy'. 
 They would delay to perform action until a collect operation is invoked. By 
 doing this each elements are handled by a pipeline of operations. This would 
 minimize the number of iterations.
 
-### Filter
+#### Filter
 
 Returns a stream consisting of the elements of this stream that match the given 
 predicate. A preication should tell if a element should be included.
@@ -75,7 +75,7 @@ NSArray<Employee *> *NonHrFinantialOfficers = finantialOffiers.stream
 .array();
 ```
 
-### Mapper
+#### Mapper
 
 Returns a stream consisting of the results of applying the given function to the 
 elements of this stream. You are allowed to return nil in your mapper, the 
@@ -89,7 +89,7 @@ NSArray<NSString *> *developerIdentifiers = developers.stream
 .array();
 ```
 
-### Peek
+#### Peek
 
 Returns a stream consisting of the elements of target stream, additionally 
 performing a provided action on each element.
@@ -102,27 +102,27 @@ finantialOffiers.stream
 .iterate();
 ```
 
-- Collect Operation
+### Collect Operation
 
 Collects the elements of the stream into an Objetive-C collection (NSArray, 
 NSSet, NSDictionary). Collect Operation will trigger the stream to perform 
 intermediate operations.
 
-### Array
+#### Array
 
 Collects the elements of a stream and stores them to an NSArray.
 
-### Set
+#### Set
 
-Collects the elements of a stream and stores them to an NSSet.
+Collects the elements of a stream and stores them to an NSOrderedSet.
 
 ```objc
-NSSet<Employee *> *distinct = finantialOffiers.stream
+NSOrderedSet<Employee *> *distinct = finantialOffiers.stream
 .add(hrOffiers)
 .set();
 ```
 
-### Dictionary
+#### Dictionary
 
 Collects the elements of a stream and stores them to an NSDictionary. The 
 operation will use the value of the specified property of each element as the 
@@ -135,7 +135,7 @@ NSDictionary<NSString *, Employee *> *developerDictionary = developers.stream
 .dictionary(@"identifier");
 ```
 
-### Iterate
+#### Iterate
 
 Iterate the stream and trigger this stream to invoke intermediate operations immediately 
 (See code block of [Peek](#peek)).
@@ -179,9 +179,7 @@ each other or dependently are not good for concurrent streams.
 - If intermediate ops have no synchronize problem or you could deal with it by yourselves, 
 concurrent stream normally run faster than for-loops for huge data set.
 
-**A pratical suggestion: DO NOT worry about the performance problem. Until you feel 
-something and then try concurrent streams; Until you found synchronization 
-problems and you don't familiar and then try for-loops instead.**
+A pratical suggestion: DO NOT worry about the performance at begin. Try concurrent streams if you feel slow; If you really worry about performace or concurrent issues, use for-loops.
 
 ## License
 
