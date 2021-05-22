@@ -17,7 +17,7 @@
     }while (i > 1);
 }
 -(void)sayHello{
-    printf("%s says Hello.\n", self.identifier.UTF8String);
+    printf("%ld says Hello.\n", self.id_);
 }
 - (NSInteger)sayOne{
     return 1;

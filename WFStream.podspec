@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "WFStream"
-  spec.version      = "1.0.0"
+  spec.version      = "1.0.1"
   spec.summary      = "WFStream is for doing sequential stream things like JAVA."
 
   spec.homepage     = "https://github.com/WindFantasy/WFStream"
